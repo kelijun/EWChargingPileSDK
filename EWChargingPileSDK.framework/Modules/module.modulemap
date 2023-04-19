@@ -1,0 +1,6 @@
+framework module EWChargingPileSDK {
+  umbrella header "EWChargingPileSDK.h"
+
+  export *
+  module * { export * }
+}
