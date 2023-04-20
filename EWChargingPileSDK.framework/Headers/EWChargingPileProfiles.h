@@ -178,7 +178,7 @@ typedef void (^EWChargingPileSwitchErrorHandler)(NSString * _Nullable chargingPi
 typedef void (^EWChargingPileCPAdjustmentHandler)(NSString * _Nullable chargingPileName, EWChargingPileCPModel * _Nullable cpModel, NSError * _Nullable error);
 
 // 充电桩成功失败结果回调(名称，成功否，错误)
-typedef void (^EWChargingPilerResultHandler)(NSString * _Nullable chargingPileName, BOOL resul, NSError * _Nullable error);
+typedef void (^EWChargingPilerResultHandler)(NSString * _Nullable chargingPileName, BOOL result, NSError * _Nullable error);
 // 升级回调(名称，进度，当前时间，总时间，错误信息)
 typedef void (^EWChargingPileUpgradeHandler)(NSString * _Nullable chargingPileName, double progress, NSInteger currentTime, NSInteger totalTime, NSError * _Nullable error);
 #endif /* EWChargingPileProfiles_h */
