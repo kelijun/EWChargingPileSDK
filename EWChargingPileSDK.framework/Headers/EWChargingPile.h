@@ -32,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ew_configureChargingPileAppId:(NSString *)appId
                             appSecret:(NSString *)appSecret;
 
+///配置搜索配置
+- (void)ew_configChargingPileScanWithName: (NSString *)filterName;
+
+
 /// 扫描附近的充电桩
 /// - Parameter handler: 扫描回调
 - (void)ew_scanChargingPileHandler:(EWScanChargingPileHandler)handler;
