@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, EWCPMethodType) {
 };
 
 typedef NS_ENUM(NSUInteger, EWCPCommandType) {
-    EWCPCommandTypeStart = 22,          // 启动
+    EWCPCommandTypeStart = 44,          // 启动
     EWCPCommandTypeStop = 33,          // 停止
     EWCPCommandTypeProudctID = 0x00,    // 获取产品ID
     EWCPCommandTypeNumber = 0x01,       // 获取设备编号
@@ -55,12 +55,51 @@ typedef NS_ENUM(NSUInteger, EWCPCommandType) {
     EWCPCommandTypeDeviceInfo = 0x0F,// 读写设备信息
     EWCPCommandTypeConfigureReportErrorSwitch = 0x10, //配置报错开关
     EWCPCommandTypeCPAdjustment = 0x11, //CP调节
+    EWCPCommandTypeConfigureNFC = 0x13, //配置NFC
+    EWCPCommandTypeConfigServerURL = 0x14, //配置多个服务器
+    EWCPCommandTypeMQTTAccount = 0x15, //配置MQTT账号密码
+    EWCPCommandTypeConfigureWarnSwitch = 0x16, //配置警告开关
     EWCPCommandTypeUpgrade = 0xF0,      // OTA升级
 };
 
 typedef NS_ENUM(NSUInteger, EWCPCurrentType) {
     EWCPCurrentTypeAC = 0x00, // 交流电
     EWCPCurrentTypeDC = 0x01, // 直流电
+    EWCPCurrentTypeACDC = 0x02, //交流直流一体
+};
+
+//充电连接方式
+typedef NS_ENUM(NSUInteger, EWCPChargingConnectionMode) {
+    EWCPChargingConnectionA = 0x00,
+    EWCPChargingConnectionB = 0x01,
+    EWCPChargingConnectionC = 0x02,
+};
+
+//相线类型
+typedef NS_ENUM(NSUInteger, EWCPPhaseLineType) {
+    EWCPPhaseLineTypeSingle = 0x00, //单相（1L1N220V）
+    EWCPPhaseLineTypeFourLines = 0x01, //三相四线（3L1N线电压380V）
+    EWCPPhaseLineTypeThreeLines = 0x02, //三相三线（3L0N线电压380V）
+};
+
+//计量模块类型
+typedef NS_ENUM(NSUInteger, EWCPMeasurementModuleType) {
+    EWCPMeasurementModuleTypeNone = 0x00, //无计量模块
+    EWCPMeasurementModuleType8209 = 0x01, //RN8209
+    EWCPMeasurementModuleType7302 = 0x02, //RN7302
+};
+
+//4G模块类型
+typedef NS_ENUM(NSUInteger, EWCP4GModuleType) {
+    EWCP4GModuleTypeNone = 0x00, //无4G模块
+    EWCP4GModuleType665 = 0x01, //MC665(国内外通用)
+    EWCP4GModuleType26E = 0x02, //NT26E(国内)
+};
+
+//以太网模块类型
+typedef NS_ENUM(NSUInteger, EWCPEthernetModuleType) {
+    EWCPEthernetModuleTypeNone = 0x00, //无以太网模块
+    EWCPEthernetModuleType5500 = 0x01, //W5500
 };
 
 typedef NS_ENUM(NSUInteger, EWCPActivationStatus) {
@@ -136,6 +175,8 @@ typedef NS_ENUM(NSUInteger, EWChargingError) {
     EWChargingError10 = 0x0A,  // 温度传感器1故障
     EWChargingError11 = 0x0B,  // 温度传感器2故障
     EWChargingError12 = 0x0C,  // 温度传感器3故障
+    EWChargingError13 = 0x0D,  // 室内温度过高
+    EWChargingError14 = 0x0E,  // 漏电保护器校验错误
     EWChargingError20 = 0x14,  // 继电器开路
     EWChargingError21 = 0x15,  // 继电器粘连
     EWChargingError22 = 0x16,  // 继电器过温
@@ -143,6 +184,32 @@ typedef NS_ENUM(NSUInteger, EWChargingError) {
     EWChargingError30 = 0x1E,  // EEPROM
     EWChargingError31 = 0x1F,  // MCB通讯故障
 };
+
+//暂时无用 -- 警告代码和错误代码一致
+typedef NS_ENUM(NSUInteger, EWChargingWarn) {
+    EWChargingWarnNo = 0x00, // 无错误
+};
+
+//充电桩RFID卡模式
+typedef NS_ENUM(NSUInteger, EWChargingPileServerID) {
+    EWChargingPileMQTTServer = 0x00, //MQTT服务器
+    EWChargingPileCloudServer = 0x01, //云快充服务器
+};
+
+//充电桩RFID卡模式
+typedef NS_ENUM(NSUInteger, EWChargingPileRFIDMode) {
+    EWCPRFIDNoVerifyCharging = 0x00, //不验证卡号刷卡充电
+    EWCPRFIDNoVerifyUploadCard = 0x01, //不验证卡号刷卡传卡号
+    EWCPRFIDWithVerifyCharging = 0x02, //验证卡号刷卡充电
+    EWCPRFIDWithVerifyUploadCard = 0x03, //验证卡号刷卡传卡号
+};
+
+typedef NS_ENUM(NSUInteger, EWChargingPileSetRFIDMode) {
+    EWCPOutSetRFID = 0x00, //退出RFID保存卡号模式
+    EWCPInSetRFID = 0x01, //进入RFID保存卡模式
+    EWCPDeleteRFID = 0x02, //清除卡号
+};
+
 
 // 蓝牙状态回调
 typedef void (^EWBluetoothDidUpdateStateHandler)(EWBluetoothState state);
@@ -176,7 +243,14 @@ typedef void (^EWChargingPilerUrlAddressHandler)(NSString * _Nullable chargingPi
 typedef void (^EWChargingPileSwitchErrorHandler)(NSString * _Nullable chargingPileName, EWChargingPileSwitchErrorModel * _Nullable switchErrorModel, NSError * _Nullable error);
 //CP调节回调（名称，开关数据，错误）
 typedef void (^EWChargingPileCPAdjustmentHandler)(NSString * _Nullable chargingPileName, EWChargingPileCPModel * _Nullable cpModel, NSError * _Nullable error);
-
+//读取NFC卡号回调（名称，卡序号，卡号，错误）
+typedef void (^EWChargingPileNFCNumHandler)(NSString * _Nullable chargingPileName, NSNumber * _Nullable nfcIndex, NSString * _Nullable nfcNum, NSError * _Nullable error);
+//RFID卡模式回调（名称，卡模式，结果，错误）
+typedef void (^EWChargingPileNFCModeHandler)(NSString * _Nullable chargingPileName, EWChargingPileSetRFIDMode nfcMode, BOOL result, NSError * _Nullable error);
+// 充电桩配置多个服务器地址回调(名称，服务器ID, 服务器地址，错误)
+typedef void (^EWChargingPilerServerHandler)(NSString * _Nullable chargingPileName, EWChargingPileServerID serverID,NSString * _Nullable urlAddress, NSError * _Nullable error);
+//配置mqtt账号密码回调 (名称，账号，密码，错误)
+typedef void (^EWChargingPileAccountAndPasswordHandler)(NSString * _Nullable chargingPileName, NSString * _Nullable account, NSString * _Nullable password, NSString * _Nullable key, NSError * _Nullable error);
 // 充电桩成功失败结果回调(名称，成功否，错误)
 typedef void (^EWChargingPilerResultHandler)(NSString * _Nullable chargingPileName, BOOL result, NSError * _Nullable error);
 // 升级回调(名称，进度，当前时间，总时间，错误信息)

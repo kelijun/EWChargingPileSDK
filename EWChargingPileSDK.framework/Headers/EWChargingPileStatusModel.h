@@ -30,10 +30,29 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat temperature;
 /// 湿度 %
 @property (nonatomic, assign) CGFloat humidity;
+/// 相线个数
+@property (nonatomic, assign) NSInteger phaseLineCount;
+/// u相电压 V
+@property (nonatomic, assign) CGFloat uVoltage;
+/// v相电压 V
+@property (nonatomic, assign) CGFloat vVoltage;
+/// w相电压 V
+@property (nonatomic, assign) CGFloat wVoltage;
+/// u相电流 A
+@property (nonatomic, assign) CGFloat uElectricCurrent;
+/// v相电流 A
+@property (nonatomic, assign) CGFloat vElectricCurrent;
+/// w相电流 A
+@property (nonatomic, assign) CGFloat wElectricCurrent;
 /// 错误个数
 @property (nonatomic, assign) NSInteger errorCount;
 /// 错误码数组
-@property (nonatomic, strong) NSArray <NSNumber *> *errorArray;;
+@property (nonatomic, strong) NSArray <NSNumber *> *errorArray;
+/// 警告个数
+@property (nonatomic, assign) NSInteger warnCount;
+/// 警告码数组
+@property (nonatomic, strong) NSArray <NSNumber *> *warnArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

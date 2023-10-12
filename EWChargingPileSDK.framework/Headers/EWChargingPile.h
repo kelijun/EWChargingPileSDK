@@ -120,11 +120,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - mode: 充电模式
 ///   - systemSwitch: 系统开关
 ///   - nfcSwitch: nfc开关
+///   - rfidMode：RFID卡模式
 ///   - handler: 充电桩配置回调
 - (void)ew_configureChargingPile:(NSString *)chargingPileName
                     ChargingMode:(EWCPChargingMode)mode
                     systemSwitch:(BOOL)systemSwitch
                        nfcSwitch:(BOOL)nfcSwitch
+                        rfidMode:(EWChargingPileRFIDMode)rfidMode
                          handler:(EWChargingPileConfigureHandler)handler;
 
 /// 充电控制
@@ -392,6 +394,69 @@ NS_ASSUME_NONNULL_BEGIN
                                          isWrite: (BOOL)isWrite
                                          cpAdjustment: (nullable EWChargingPileCPModel *)cpModel
                                          handler: (EWChargingPileCPAdjustmentHandler) handler;
+
+///读取NFC卡号
+///   - chargingPileName: 充电桩名字
+///   - cardNum: 要读取的卡序号
+///   - handler: 回调
+- (void)ew_readChargingPileNFCNumWithChagringPile: (NSString *)chargingPileName
+                                          cardNum: (NSInteger)num
+                                           handle: (EWChargingPileNFCNumHandler) handler;
+
+///写入NFC卡号
+///   - chargingPileName: 充电桩名字
+///   - cardNum: 要写入的卡序号
+///   - nfcCard: 要写入的卡号
+///   - handler: 回调
+- (void)ew_writeChagringPileNFCNumWithChargingPile: (NSString *)chargingPileName
+                                           cardNum: (NSInteger)num
+                                           nfcCard: (NSString *)nfcCard
+                                            handle: (EWChargingPilerResultHandler)handler;
+
+///进入/退出NFC保存卡号模式
+///   - chargingPileName: 充电桩名字
+///   - mode: 进入/退出保存、清除卡号模式
+///   - handler: 回调
+- (void)ew_configureChargingPileNFCModeWithChargingPile: (NSString *)chargingPileName
+                                                 mode: (EWChargingPileSetRFIDMode)rfidMode
+                                                 handle: (EWChargingPileNFCModeHandler)handler;
+///配置多个服务器地址
+///   - chargingPileName: 充电桩名字
+///   - isWrite: 写/读
+///   - serverID: 服务器编号
+///   - url: 服务器地址
+///   - handler: 回调
+- (void)ew_configureChargingPileServerWithChargingPile: (NSString *)chargingPileName
+                                               isWrite: (BOOL)isWrite
+                                              serverID: (EWChargingPileServerID)serverID
+                                                   url: (NSString *)urlAddress
+                                                handle: (EWChargingPilerServerHandler)handler;
+
+/// 配置MQTT账号密码
+/// - Parameters:
+///   - chargingPileName: 微逆蓝牙广播号
+///   - isWrite: 是否写入
+///   - account: mqtt账号
+///   - password: mqtt密码
+///   - key: mqtt密钥
+///   - handler: 回调
+- (void)ew_configureAccountAndPasswordWithChargingPile:(NSString *)chargingPileName
+                                           isWrite:(BOOL)isWrite
+                                                account:(nullable NSString *)account
+                                               password:(nullable NSString *)password
+                                                   key: (nullable NSString *) key
+                                               handler:(EWChargingPileAccountAndPasswordHandler)handler;
+
+/// 配置警告开关
+///   - chargingPileName: 充电桩名字
+///   - isWrite: 是否写入
+///   - switchErrorModel: 警告开关配置
+///   - handler: 回调
+- (void)ew_configureSwitchWarnWithChargingPile: (NSString *)chargingPileName
+                                        isWrite: (BOOL)isWrite
+                                    switchWarn: (nullable EWChargingPileSwitchErrorModel *)switchWarnModel
+                                        handler: (EWChargingPileSwitchErrorHandler)handler;
+
 
 /// OTA升级
 /// - Parameters:

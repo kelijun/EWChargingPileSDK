@@ -28,10 +28,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) float ratedPower;
 // 额定电流
 @property (nonatomic, assign) NSInteger ratedCurrent;
+//充电连接方式
+@property (nonatomic, assign) EWCPChargingConnectionMode chargingConnectionMode;
+//相线类型
+@property (nonatomic, assign) EWCPPhaseLineType phaseLineType;
+//计量模块类型
+@property (nonatomic, assign) EWCPMeasurementModuleType measurementModuleType;
+//4G模块类型
+@property (nonatomic, assign) EWCP4GModuleType module4GType;
+//以太网类型
+@property (nonatomic, assign) EWCPEthernetModuleType ethernetModuleType;
 
 - (NSDictionary *)dicFromObject:(NSObject *)object;
 
-@end 
+@end
 
 @interface EWChargingPileVersionInfoModel : NSObject
 // 主控芯片供应商
