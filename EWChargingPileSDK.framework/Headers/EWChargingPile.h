@@ -114,19 +114,32 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ew_getChargingPileConfigure:(NSString *)chargingPileName
                             handler:(EWChargingPileConfigureHandler)handler;
 
+///// 配置充电桩
+///// - Parameters:
+/////   - chargingPileName: 充电桩蓝牙广播号
+/////   - mode: 充电模式
+/////   - systemSwitch: 系统开关
+/////   - nfcSwitch: nfc开关
+/////   - rfidMode：RFID卡模式
+/////   - handler: 充电桩配置回调
+//- (void)ew_configureChargingPile:(NSString *)chargingPileName
+//                    ChargingMode:(EWCPChargingMode)mode
+//                    systemSwitch:(BOOL)systemSwitch
+//                       nfcSwitch:(BOOL)nfcSwitch
+//                        rfidMode:(EWChargingPileRFIDMode)rfidMode
+//                         handler:(EWChargingPileConfigureHandler)handler;
+
 /// 配置充电桩
 /// - Parameters:
 ///   - chargingPileName: 充电桩蓝牙广播号
 ///   - mode: 充电模式
 ///   - systemSwitch: 系统开关
 ///   - nfcSwitch: nfc开关
-///   - rfidMode：RFID卡模式
 ///   - handler: 充电桩配置回调
 - (void)ew_configureChargingPile:(NSString *)chargingPileName
                     ChargingMode:(EWCPChargingMode)mode
                     systemSwitch:(BOOL)systemSwitch
                        nfcSwitch:(BOOL)nfcSwitch
-                        rfidMode:(EWChargingPileRFIDMode)rfidMode
                          handler:(EWChargingPileConfigureHandler)handler;
 
 /// 充电控制

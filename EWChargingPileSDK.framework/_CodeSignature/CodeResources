@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/EWChargingPile.h</key>
 		<data>
-		AW/1+8QoTDQMdmpsBtiItX+7kMU=
+		ke5sZ4KCGf0KOW4juaZK6SIcai8=
 		</data>
 		<key>Headers/EWChargingPileCPModel.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/EWChargingPileConfigureModel.h</key>
 		<data>
-		495mC7AInN0RwvHUZOjLDhsevaM=
+		AFPfw504zW7SD42W022QSvOc3Zs=
 		</data>
 		<key>Headers/EWChargingPileDelegate.h</key>
 		<data>
@@ -71,11 +71,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AW/1+8QoTDQMdmpsBtiItX+7kMU=
+			ke5sZ4KCGf0KOW4juaZK6SIcai8=
 			</data>
 			<key>hash2</key>
 			<data>
-			6R8zrpUl9pJoPm32dFi+s8KVOVSSgmjX8Bo8TorxPfE=
+			MDcxYTeCmztZOLfhHhACUmd5O4Hu8Qh4dg3CPTvOkP4=
 			</data>
 		</dict>
 		<key>Headers/EWChargingPileCPModel.h</key>
@@ -93,11 +93,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			495mC7AInN0RwvHUZOjLDhsevaM=
+			AFPfw504zW7SD42W022QSvOc3Zs=
 			</data>
 			<key>hash2</key>
 			<data>
-			9Ofs15Lkr66KUNkRpBxgj73QKEqBglTrtLw3Ngi9oyw=
+			fidOkJHdmJi+9TAqVAdoISabbCi/v1xco3+ZQ1KgykY=
 			</data>
 		</dict>
 		<key>Headers/EWChargingPileDelegate.h</key>
