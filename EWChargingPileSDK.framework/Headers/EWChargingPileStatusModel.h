@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat temperature;
 /// 湿度 %
 @property (nonatomic, assign) CGFloat humidity;
+/// CP占比
+@property (nonatomic, assign) NSInteger cpPercentage;
 /// 相线个数
 @property (nonatomic, assign) NSInteger phaseLineCount;
 /// u相电压 V
