@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)share;
 
 
+/// 获取当前SDK版本号
+- (NSString *)ew_getApiVersion;
+
 /// 配置key和密钥
 /// - Parameters:
 ///   - appId: appId
