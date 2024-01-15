@@ -10,7 +10,7 @@
 
 #import <EWBluetoothSDk/EWBluetoothSDK.h>
 
-@class EWChargingPileInfoModel, EWChargingPileConfigureModel, EWChargingPileStatusModel, EWChargingPileSwitchErrorModel, EWChargingPileCPModel;
+@class EWChargingPileInfoModel, EWChargingPileConfigureModel, EWChargingPileStatusModel, EWChargingPileSwitchErrorModel, EWChargingPileCPModel, EWChargingPileUsageModel, EWChargingPileLogModel, EWChargingPileAppointmentModel;
 
 typedef NS_ENUM(NSUInteger, EWCPMethodType) {
     EWCPMethodTypeStart = 0,       // 启动
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, EWCPCommandType) {
     EWCPCommandTypeStatistics = 0x07,   // 统计数据
     EWCPCommandTypeNetwork = 0x08,      // 配置网络
     EWCPCommandTypeConfigureAPN = 0x09, // 配置APN
-    EWCPCommandTypeReadAPN = 0x0A,      // 阅读APN
+    EWCPCommandTypeReadICCID = 0x0A,      // 读ICCID信息（4G模块专属）
     EWCPCommandTypeSyncTimeZone = 0x0B, // 同步时间
     EWCPCommandTypeConfigureUserID = 0x0C,// 同步时间
     EWCPCommandTypeConfigureModelCode = 0x0D,// 配置机型编码及SN码
@@ -59,6 +59,11 @@ typedef NS_ENUM(NSUInteger, EWCPCommandType) {
     EWCPCommandTypeConfigServerURL = 0x14, //配置多个服务器
     EWCPCommandTypeMQTTAccount = 0x15, //配置MQTT账号密码
     EWCPCommandTypeConfigureWarnSwitch = 0x16, //配置警告开关
+    EWCPCommandTypeConfigureMaxCurrent = 0x17, //配置最大电流
+    EWCPCommandTypeReadLogData = 0x18, //读取日志数据
+    EWCPCommandTypeDeleteLog = 0x19, //删除日志
+    EWCPCommandTypeDeviceUsage = 0x1A, //读取设备使用情况
+    EWCPCommandTypeConfigureAppointment = 0x1B, //读取/设置预约信息
     EWCPCommandTypeUpgrade = 0xF0,      // OTA升级
 };
 
@@ -128,7 +133,8 @@ typedef NS_ENUM(NSUInteger, EWCPControlCharging) {
     EWCPControlChargingStart = 0x01, // 开始充电
     EWCPControlChargingStop = 0x02,  // 停止充电
     EWCPControlChargingPause = 0x03, // 结束充电
-    EWCPControlChargingUnlock = 0x04, // 废弃⚠️
+    EWCPControlChargingUnlock = 0x04, // caseB电子锁解锁
+    EWCPControlChargingLock = 0x05,  //caseB电子锁锁定
     EWCPControlChargingAppointment = 0x0A, // 废弃⚠️
     EWCPControlChargingRepeatAppointment = 0x0B,// 重复预约
     EWCPControlChargingCancelAppointment = 0x0C,// 取消预约
@@ -210,11 +216,39 @@ typedef NS_ENUM(NSUInteger, EWChargingPileSetRFIDMode) {
     EWCPDeleteRFID = 0x02, //清除卡号
 };
 
+typedef NS_ENUM(NSUInteger, EWChargingPileLogType) {
+    EWCPErrorLog = 0x01, //故障日志
+    EWCPChargingLog = 0x02, //充电记录日志
+    EWCPCurrentLog = 0x03, //电流调节日志
+    EWCPTimeLog = 0x04, //时间日志
+};
+
+typedef NS_ENUM(NSUInteger, EWChargingPileStartEndReason) {
+    EWCPStartPlugCharge = 0x01, //开始即插即充
+    EWCPStartBle = 0x02, //蓝牙开始
+    EWCPStartNet = 0x03, //网络开始
+    EWCPStartBook = 0x04, //预约开始
+    EWCPCarStopAndRestart = 0x05, //车端停止又开始充电
+    EWCPStartNFC = 0x06, //nfc开始
+    EWCPStopGun = 0x07, //拔枪停止
+    EWCPStopBle = 0x08, //蓝牙停止
+    EWCPStopNet = 0x09, //网络停止
+    EWCPStopBook = 0x0A, //预约停止
+    EWCPStopCar = 0x0B, //车端停止,S2断开
+    EWCPStopError = 0x0C, //故障停止
+    EWCPStopNFC = 0x0D //nfc停止
+};
+
+typedef NS_ENUM(NSUInteger, EWChargingPileAppointmentType) {
+    EWCPAppointmentStop = 0x00, //停用
+    EWCPAppointmentStart = 0x01, //启用
+    EWCPAppointmentRunning = 0x02, //运行中
+};
 
 // 蓝牙状态回调
 typedef void (^EWBluetoothDidUpdateStateHandler)(EWBluetoothState state);
 // 发现充电桩回调(蓝牙广播号)
-typedef void (^EWScanChargingPileHandler)(NSString *_Nullable chargingPileName);
+typedef void (^EWScanChargingPileHandler)(NSString *_Nullable chargingPileName, NSNumber * _Nullable RSSI);
 // 充电桩消失回调(蓝牙广播号)
 typedef void (^EWChargingPileDisappearHandler)(NSString *_Nullable chargingPileName);
 // 停止扫描充电桩回调(是否成功)
@@ -235,6 +269,8 @@ typedef void (^EWChargingPileWiFiInformationHandler)(NSString * _Nullable chargi
 typedef void (^EWWifiInformationHandler)(NSString * _Nullable wifiName, NSString * _Nullable mac, NSData * _Nullable data, NSError * _Nullable error);
 // 获取APN信息(名称，APN数据，错误)
 typedef void (^EWGetChargingPileAPNInformationHandler)(NSString * _Nullable bluetoothName, NSData * _Nullable APNData, NSError * _Nullable error);
+// 配置ICCID回调(名称，ICCID数据，错误)
+typedef void (^EWChargingPileICCIDHandler)(NSString * _Nullable bluetoothName, NSString * _Nullable ICCID, NSError * _Nullable error);
 // 充电桩机型编码及SN码回调(名称，机型编码，SN码，错误)
 typedef void (^EWChargingPilerModelAndSNCodeHandler)(NSString * _Nullable chargingPileName, NSString * _Nullable modelCode, NSString * _Nullable SNCode, NSError * _Nullable error);
 // 充电桩服务器地址回调(名称，服务器地址，错误)
@@ -251,6 +287,16 @@ typedef void (^EWChargingPileNFCModeHandler)(NSString * _Nullable chargingPileNa
 typedef void (^EWChargingPilerServerHandler)(NSString * _Nullable chargingPileName, EWChargingPileServerID serverID,NSString * _Nullable urlAddress, NSError * _Nullable error);
 //配置mqtt账号密码回调 (名称，账号，密码，错误)
 typedef void (^EWChargingPileAccountAndPasswordHandler)(NSString * _Nullable chargingPileName, NSString * _Nullable account, NSString * _Nullable password, NSString * _Nullable key, NSError * _Nullable error);
+// 配置最大电流回调（名称，电流，读取成功失败，错误）
+typedef void (^EWChargingPileMaxCurrentHandler)(NSString * _Nullable chargingPileName, NSNumber * _Nullable maxCurrent, BOOL result, NSError * _Nullable error);
+// 充电桩使用情况回调(蓝牙广播号，使用情况模型，错误信息)
+typedef void (^EWChargingPileUsageHandler)(NSString * _Nullable chargingPileName, EWChargingPileUsageModel * _Nullable usageModel, NSError * _Nullable error);
+// 充电桩日志回调(蓝牙广播号，日志模型，错误信息)
+typedef void (^EWChargingPileLogHandler)(NSString * _Nullable chargingPileName, EWChargingPileLogModel * _Nullable logModel, NSError * _Nullable error);
+// 充电桩删除日志回调(蓝牙广播号，删除结果，错误信息)
+typedef void (^EWChargingPileDeleteLogHandler)(NSString * _Nullable chargingPileName, BOOL res, NSError * _Nullable error);
+// 充电桩预约回调(蓝牙广播号，预约信息，错误信息)
+typedef void (^EWChargingPileAppointmentHandler)(NSString * _Nullable chargingPileName, NSArray <EWChargingPileAppointmentModel *> * _Nullable appointmentModelArray, NSError * _Nullable error);
 // 充电桩成功失败结果回调(名称，成功否，错误)
 typedef void (^EWChargingPilerResultHandler)(NSString * _Nullable chargingPileName, BOOL result, NSError * _Nullable error);
 // 升级回调(名称，进度，当前时间，总时间，错误信息)

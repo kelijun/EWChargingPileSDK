@@ -19,8 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL systemSwitch;
 /// NFC开关
 @property (nonatomic, assign) BOOL nfcSwitch;
-/////RFID卡模式
-//@property (nonatomic, assign) EWChargingPileRFIDMode rfidMode;
+///RFID卡模式
+@property (nonatomic, assign) EWChargingPileRFIDMode rfidMode;
 
 @end
 

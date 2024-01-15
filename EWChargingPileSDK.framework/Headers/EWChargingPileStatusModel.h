@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) EWChargingGunStatus chargingGunStatus;
 /// 充电状态
 @property (nonatomic, assign) EWChargingStatus chargingStatus;
+/// CASE B电子锁状态（YES打开，NO关闭）
+@property (nonatomic, assign) BOOL caseBLockStatus;
 /// 电压 V
 @property (nonatomic, assign) CGFloat voltage;
 /// 电流 A
@@ -56,5 +58,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray <NSNumber *> *warnArray;
 
 @end
+
 
 NS_ASSUME_NONNULL_END
