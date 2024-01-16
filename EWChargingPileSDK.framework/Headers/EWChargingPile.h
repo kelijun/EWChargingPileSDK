@@ -517,6 +517,17 @@ NS_ASSUME_NONNULL_BEGIN
                                 bookArray:(NSArray <EWChargingPileAppointmentModel *>*)bookArray
                                   handler: (EWChargingPileAppointmentHandler)handler;
 
+/// 配置预约充电（传入字典）
+/// - Parameters:
+///   - chargingPileName: 充电桩名字
+///   - isWrite: 是否写入
+///   - bookDicArr: 预约信息字典
+///   - handler: 回调
+- (void)ew_configBookInfoWithChargingPile: (NSString *)chargingPileName
+                                  isWrite: (BOOL)isWrite
+                                bookDicArr:(NSArray<NSDictionary *> *)bookDicArr
+                                  handler: (EWChargingPileAppointmentHandler)handler;
+
 /// OTA升级
 /// - Parameters:
 ///   - chargingPileName: 充电桩蓝牙广播号
