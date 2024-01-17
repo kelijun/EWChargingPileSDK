@@ -6,7 +6,11 @@
 	<dict>
 		<key>Headers/EWChargingPile.h</key>
 		<data>
-		CCv6nNnjrTFMRjYkG+USv8MX3gs=
+		3c6cYJFn4ni8t5k75FViwBGKG3Y=
+		</data>
+		<key>Headers/EWChargingPileAppointmentModel.h</key>
+		<data>
+		LAE81g3na4yKCmo2lge1yElYwHc=
 		</data>
 		<key>Headers/EWChargingPileCPModel.h</key>
 		<data>
@@ -14,7 +18,7 @@
 		</data>
 		<key>Headers/EWChargingPileConfigureModel.h</key>
 		<data>
-		AFPfw504zW7SD42W022QSvOc3Zs=
+		495mC7AInN0RwvHUZOjLDhsevaM=
 		</data>
 		<key>Headers/EWChargingPileDelegate.h</key>
 		<data>
@@ -23,6 +27,10 @@
 		<key>Headers/EWChargingPileInfoModel.h</key>
 		<data>
 		dAL40YCzaGppwV0VTr7nnzXEwOQ=
+		</data>
+		<key>Headers/EWChargingPileLogModel.h</key>
+		<data>
+		CGiD/2BWCIM2GSr9/8LePRiW4VM=
 		</data>
 		<key>Headers/EWChargingPileMQTT.h</key>
 		<data>
@@ -38,7 +46,7 @@
 		</data>
 		<key>Headers/EWChargingPileProfiles.h</key>
 		<data>
-		14BKtc+MlaV/6Tb2L3FhnRfw5nc=
+		AoxmezzTdzf2tjFfjd07uko7KJ0=
 		</data>
 		<key>Headers/EWChargingPileSDK.h</key>
 		<data>
@@ -46,11 +54,15 @@
 		</data>
 		<key>Headers/EWChargingPileStatusModel.h</key>
 		<data>
-		U3cB6pFVTibVh5derk08IxfhijE=
+		ELiTRJ0xjYruLK2bBBKbOLpLpMc=
 		</data>
 		<key>Headers/EWChargingPileSwitchErrorModel.h</key>
 		<data>
 		5jqL9aTNRCxXldEBvwYcApqpTK8=
+		</data>
+		<key>Headers/EWChargingPileUsageModel.h</key>
+		<data>
+		qiMichJa1WrIU9VDIpgJieliM2k=
 		</data>
 		<key>Headers/EWChargingPileUtils.h</key>
 		<data>
@@ -58,7 +70,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		s2TR0zwEfqqp+tZoM3gulMDxppI=
+		pMim4pZSgOnuEaVH7gG+0c2Chxg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -71,11 +83,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			CCv6nNnjrTFMRjYkG+USv8MX3gs=
+			3c6cYJFn4ni8t5k75FViwBGKG3Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			GN9VCwrP79IlMjy+a6mW9bkD7GgBT8aFa2vSFIoeOU4=
+			E+z6eUFvPPo43IOFIjcvE+bJWSb1iFDsERwtnoqQPxQ=
+			</data>
+		</dict>
+		<key>Headers/EWChargingPileAppointmentModel.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			LAE81g3na4yKCmo2lge1yElYwHc=
+			</data>
+			<key>hash2</key>
+			<data>
+			mvJUmmwZpA8i3d+63M0JXZoFQX6v3TShZ5m3Dpvt1IE=
 			</data>
 		</dict>
 		<key>Headers/EWChargingPileCPModel.h</key>
@@ -93,11 +116,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AFPfw504zW7SD42W022QSvOc3Zs=
+			495mC7AInN0RwvHUZOjLDhsevaM=
 			</data>
 			<key>hash2</key>
 			<data>
-			fidOkJHdmJi+9TAqVAdoISabbCi/v1xco3+ZQ1KgykY=
+			9Ofs15Lkr66KUNkRpBxgj73QKEqBglTrtLw3Ngi9oyw=
 			</data>
 		</dict>
 		<key>Headers/EWChargingPileDelegate.h</key>
@@ -120,6 +143,17 @@
 			<key>hash2</key>
 			<data>
 			WE0WNkworB0aZFfIXztaOHMYxTmLiyTfI0A81Ie229o=
+			</data>
+		</dict>
+		<key>Headers/EWChargingPileLogModel.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			CGiD/2BWCIM2GSr9/8LePRiW4VM=
+			</data>
+			<key>hash2</key>
+			<data>
+			EvcTJlA+ni/M8Ldc+8L08W+p8VDEXF0JKQmZz+5fHmM=
 			</data>
 		</dict>
 		<key>Headers/EWChargingPileMQTT.h</key>
@@ -159,11 +193,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			14BKtc+MlaV/6Tb2L3FhnRfw5nc=
+			AoxmezzTdzf2tjFfjd07uko7KJ0=
 			</data>
 			<key>hash2</key>
 			<data>
-			991iyxdZUVUmZaUhPL8biXfuJcutb9P5rU6jbHfonNo=
+			wTFUqVnHmdSHBu8VZhedJR4gIt8VL6fEglnfebcF/fc=
 			</data>
 		</dict>
 		<key>Headers/EWChargingPileSDK.h</key>
@@ -181,11 +215,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			U3cB6pFVTibVh5derk08IxfhijE=
+			ELiTRJ0xjYruLK2bBBKbOLpLpMc=
 			</data>
 			<key>hash2</key>
 			<data>
-			ujTFvZNVJTmsxkGzQLXZut2K7GhoiyM5j172YXMhUic=
+			fJDnbLs6t7+wCiRS+qEkEgLaC9SJFVR0bUeV12La8L0=
 			</data>
 		</dict>
 		<key>Headers/EWChargingPileSwitchErrorModel.h</key>
@@ -197,6 +231,17 @@
 			<key>hash2</key>
 			<data>
 			k/4H71o4ylk/3/5Cm8VS0ZtHxUf4aFgCTcodAq/vqLM=
+			</data>
+		</dict>
+		<key>Headers/EWChargingPileUsageModel.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			qiMichJa1WrIU9VDIpgJieliM2k=
+			</data>
+			<key>hash2</key>
+			<data>
+			TnJPV9T0LbxgnRMuroy5fdNdabm4eNrjF6JtvXrpLm4=
 			</data>
 		</dict>
 		<key>Headers/EWChargingPileUtils.h</key>

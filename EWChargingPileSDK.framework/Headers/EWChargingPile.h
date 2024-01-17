@@ -458,7 +458,7 @@ NS_ASSUME_NONNULL_BEGIN
                                            isWrite:(BOOL)isWrite
                                                 account:(nullable NSString *)account
                                                password:(nullable NSString *)password
-                                                   key: (nullable NSString *) key
+                                                   key:(nullable NSString *) key
                                                handler:(EWChargingPileAccountAndPasswordHandler)handler;
 
 /// 配置警告开关
@@ -478,9 +478,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - isWrite: 是否写入
 ///   - maxCurrent: 最大电流
 ///   - handler: 回调
-- (void)ew_configureMaxCurrentWithChargingPile: (NSString *)chargingPileName
-                                       isWrite: (BOOL)isWrite
-                                    maxCurrent: (NSInteger)maxCurrent
+- (void)ew_configureMaxCurrentWithChargingPile:(NSString *)chargingPileName
+                                       isWrite:(BOOL)isWrite
+                                    maxCurrent:(NSInteger)maxCurrent
                                        handler: (EWChargingPileMaxCurrentHandler)handler;
 
 /// 读取设备使用情况
