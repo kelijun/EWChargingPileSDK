@@ -129,10 +129,10 @@ typedef NS_ENUM(NSUInteger, EWCPChargingMode) {
 };
 
 typedef NS_ENUM(NSUInteger, EWCPControlCharging) {
-    EWCPControlChargingNo = 0x00,    // 不控制
+    //EWCPControlChargingNo = 0x00,    // 不控制
     EWCPControlChargingStart = 0x01, // 开始充电
     EWCPControlChargingStop = 0x02,  // 停止充电
-    EWCPControlChargingPause = 0x03, // 结束充电
+    EWCPControlChargingPause = 0x03, // 暂停充电
     EWCPControlChargingUnlock = 0x04, // caseB电子锁解锁
     EWCPControlChargingLock = 0x05,  //caseB电子锁锁定
     EWCPControlChargingAppointment = 0x0A, // 废弃⚠️
@@ -255,8 +255,8 @@ typedef void (^EWChargingPileDisappearHandler)(NSString *_Nullable chargingPileN
 typedef void (^EWStopScanChargingPileHandler)(BOOL success);
 // 充电桩信息更新回调(蓝牙广播号，信息模型，错误信息)
 typedef void (^EWChargingPileInfoHandler)(NSString * _Nullable chargingPileName, EWChargingPileInfoModel * _Nullable infoModel, NSError * _Nullable error);
-// 充电桩配置回调(蓝牙广播号，信息模型，错误信息)
-typedef void (^EWChargingPileConfigureHandler)(NSString * _Nullable chargingPileName, EWChargingPileConfigureModel *_Nullable configureModel, NSError * _Nullable error);
+// 充电桩配置回调(蓝牙广播号，信息模型，配置结果，错误信息)
+typedef void (^EWChargingPileConfigureHandler)(NSString * _Nullable chargingPileName, EWChargingPileConfigureModel *_Nullable configureModel, BOOL res, NSError * _Nullable error);
 
 // 监控充电桩状态(名称，状态模型，错误信息)
 typedef void (^EWChargingPileMonitorStatusHandler)(NSString * _Nullable chargingPileName, EWChargingPileStatusModel * _Nullable statusModel, NSError * _Nullable error);
@@ -275,10 +275,10 @@ typedef void (^EWChargingPileICCIDHandler)(NSString * _Nullable bluetoothName, N
 typedef void (^EWChargingPilerModelAndSNCodeHandler)(NSString * _Nullable chargingPileName, NSString * _Nullable modelCode, NSString * _Nullable SNCode, NSError * _Nullable error);
 // 充电桩服务器地址回调(名称，服务器地址，错误)
 typedef void (^EWChargingPilerUrlAddressHandler)(NSString * _Nullable chargingPileName, NSString * _Nullable urlAddress, NSError * _Nullable error);
-//报错开关配置回调（名称，开关数据，错误）
-typedef void (^EWChargingPileSwitchErrorHandler)(NSString * _Nullable chargingPileName, EWChargingPileSwitchErrorModel * _Nullable switchErrorModel, NSError * _Nullable error);
-//CP调节回调（名称，开关数据，错误）
-typedef void (^EWChargingPileCPAdjustmentHandler)(NSString * _Nullable chargingPileName, EWChargingPileCPModel * _Nullable cpModel, NSError * _Nullable error);
+//报错开关配置回调（名称，开关数据，配置结果，错误）
+typedef void (^EWChargingPileSwitchErrorHandler)(NSString * _Nullable chargingPileName, EWChargingPileSwitchErrorModel * _Nullable switchErrorModel, BOOL res, NSError * _Nullable error);
+//CP调节回调（名称，开关数据，配置结果，错误）
+typedef void (^EWChargingPileCPAdjustmentHandler)(NSString * _Nullable chargingPileName, EWChargingPileCPModel * _Nullable cpModel, BOOL res, NSError * _Nullable error);
 //读取NFC卡号回调（名称，卡序号，卡号，错误）
 typedef void (^EWChargingPileNFCNumHandler)(NSString * _Nullable chargingPileName, NSNumber * _Nullable nfcIndex, NSString * _Nullable nfcNum, NSError * _Nullable error);
 //RFID卡模式回调（名称，卡模式，结果，错误）

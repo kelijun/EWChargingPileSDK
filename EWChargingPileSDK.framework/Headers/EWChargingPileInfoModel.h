@@ -49,25 +49,25 @@ NS_ASSUME_NONNULL_BEGIN
 // 主控芯片型号
 @property (nonatomic, strong) NSString *mainChipModel;
 // 主控芯片硬件版本1.0
-@property (nonatomic, assign) float mainChipHardware;
+@property (nonatomic, assign) NSInteger mainChipHardware;
 // 主控芯片软件版本1.2
-@property (nonatomic, assign) float mainChipSoftware;
+@property (nonatomic, assign) NSInteger mainChipSoftware;
 // MCB芯片供应商
 @property (nonatomic, strong) NSString *MCBChipManufacturer;
 // MCB芯片型号
 @property (nonatomic, strong) NSString *MCBChipModel;
 // MCB芯片硬件版本
-@property (nonatomic, assign) float MCBChipHardware;
+@property (nonatomic, assign) NSInteger MCBChipHardware;
 // 网络模块芯片软件版本
-@property (nonatomic, assign) float MCBChipSoftware;
+@property (nonatomic, assign) NSInteger MCBChipSoftware;
 // 网络模块芯片供应商
 @property (nonatomic, strong) NSString *networkChipManufacturer;
 // 网络模块芯片型号
 @property (nonatomic, strong) NSString *networkChipModel;
 // 网络模块芯片硬件版本
-@property (nonatomic, assign) float networkChipHardware;
+@property (nonatomic, assign) NSInteger networkChipHardware;
 // 网络模块芯片软件版本
-@property (nonatomic, assign) float networkChipSoftware;
+@property (nonatomic, assign) NSInteger networkChipSoftware;
 @end
 
 NS_ASSUME_NONNULL_END
