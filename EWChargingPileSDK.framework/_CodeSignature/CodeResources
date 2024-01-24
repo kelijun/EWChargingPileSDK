@@ -4,6 +4,10 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>.DS_Store</key>
+		<data>
+		gqqx2e7o0vnrmNdmW/zLORbKF/k=
+		</data>
 		<key>Headers/EWChargingPile.h</key>
 		<data>
 		3c6cYJFn4ni8t5k75FViwBGKG3Y=
@@ -70,7 +74,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		pMim4pZSgOnuEaVH7gG+0c2Chxg=
+		rVuKjArGfGdO9u4Yx+BkYN1hDZ8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
