@@ -295,8 +295,8 @@ typedef void (^EWChargingPileUsageHandler)(NSString * _Nullable chargingPileName
 typedef void (^EWChargingPileLogHandler)(NSString * _Nullable chargingPileName, EWChargingPileLogModel * _Nullable logModel, NSError * _Nullable error);
 // 充电桩删除日志回调(蓝牙广播号，删除结果，错误信息)
 typedef void (^EWChargingPileDeleteLogHandler)(NSString * _Nullable chargingPileName, BOOL res, NSError * _Nullable error);
-// 充电桩预约回调(蓝牙广播号，预约信息，错误信息)
-typedef void (^EWChargingPileAppointmentHandler)(NSString * _Nullable chargingPileName, NSArray <EWChargingPileAppointmentModel *> * _Nullable appointmentModelArray, NSError * _Nullable error);
+// 充电桩预约回调(蓝牙广播号，当前毫秒时间戳，时区，预约信息，错误信息)
+typedef void (^EWChargingPileAppointmentHandler)(NSString * _Nullable chargingPileName, NSTimeInterval currentTime, NSInteger currentTimeZone, NSArray <EWChargingPileAppointmentModel *> * _Nullable appointmentModelArray, NSError * _Nullable error);
 // 充电桩成功失败结果回调(名称，成功否，错误)
 typedef void (^EWChargingPilerResultHandler)(NSString * _Nullable chargingPileName, BOOL result, NSError * _Nullable error);
 // 升级回调(名称，进度，当前时间，总时间，错误信息)
