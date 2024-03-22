@@ -8,7 +8,7 @@
 #ifndef EWChargingPileProfiles_h
 #define EWChargingPileProfiles_h
 
-#import <EWBluetoothSDk/EWBluetoothSDK.h>
+#import <EWBluetoothSDK/EWBluetoothSDK.h>
 
 @class EWChargingPileInfoModel, EWChargingPileConfigureModel, EWChargingPileStatusModel, EWChargingPileSwitchErrorModel, EWChargingPileCPModel, EWChargingPileUsageModel, EWChargingPileLogModel, EWChargingPileAppointmentModel;
 

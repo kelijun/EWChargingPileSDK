@@ -167,12 +167,12 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - powerArray: 每小时的功率
 ///   - isRepeat: 是否每天重复执行
 ///   - handler: 预约充电回调
-//- (void)ew_chargingPileAppointmentCharging:(NSString *)chargingPileName
-//                         chargingStartDate:(NSDate *)startDate
-//                          chargingStopDate:(NSDate *)stopDate
-//                        chargingPowerArray:(NSArray <NSString *>*)powerArray
-//                                  isRepeat:(BOOL)isRepeat
-//                                   handler:(EWChargingPilerResultHandler)handler;
+- (void)ew_chargingPileAppointmentCharging:(NSString *)chargingPileName
+                         chargingStartDate:(NSDate *)startDate
+                          chargingStopDate:(NSDate *)stopDate
+                        chargingPowerArray:(NSArray <NSString *>*)powerArray
+                                  isRepeat:(BOOL)isRepeat
+                                   handler:(EWChargingPilerResultHandler)handler;
 
 /// 预约充电 （废弃）
 /// - Parameters:
@@ -182,19 +182,19 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - powerArray: 每小时的功率
 ///   - isRepeat: 是否每天重复执行
 ///   - handler: 预约充电回调
-//- (void)ew_chargingPileAppointmentCharging:(NSString *)chargingPileName
-//                         chargingStartTime:(NSTimeInterval)startTime
-//                          chargingStopTime:(NSTimeInterval)stopTime
-//                        chargingPowerArray:(NSArray <NSString *>*)powerArray
-//                                  isRepeat:(BOOL)isRepeat
-//                                   handler:(EWChargingPilerResultHandler)handler;
+- (void)ew_chargingPileAppointmentCharging:(NSString *)chargingPileName
+                         chargingStartTime:(NSTimeInterval)startTime
+                          chargingStopTime:(NSTimeInterval)stopTime
+                        chargingPowerArray:(NSArray <NSString *>*)powerArray
+                                  isRepeat:(BOOL)isRepeat
+                                   handler:(EWChargingPilerResultHandler)handler;
 
 /// 取消预约充电（废弃）
 /// - Parameters:
 ///   - chargingPileName: 充电桩蓝牙广播号
 ///   - handler: 取消预约充电回调
-//- (void)ew_chargingPileCancelAppointmentCharging:(NSString *)chargingPileName
-//                                         handler:(EWChargingPilerResultHandler)handler;
+- (void)ew_chargingPileCancelAppointmentCharging:(NSString *)chargingPileName
+                                         handler:(EWChargingPilerResultHandler)handler;
 
 /// 时长充电
 /// - Parameters:
