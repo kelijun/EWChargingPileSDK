@@ -45,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL relayAdhesionSwitch;
 /// 继电器过温
 @property (nonatomic, assign) BOOL relayOverTempSwitch;
+/// 继电器机械故障（继电器开合粘连）
+@property (nonatomic, assign) BOOL relayMechanicalFailureSwitch;
 /// EEPROM错误
 @property (nonatomic, assign) BOOL eepromErrorSwitch;
 /// MCB通讯故障

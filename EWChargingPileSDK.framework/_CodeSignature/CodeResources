@@ -58,7 +58,7 @@
 		</data>
 		<key>Headers/EWChargingPileSwitchErrorModel.h</key>
 		<data>
-		5jqL9aTNRCxXldEBvwYcApqpTK8=
+		fcnmT18fk5zAYVDjWPizniTXeCQ=
 		</data>
 		<key>Headers/EWChargingPileUsageModel.h</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		pMim4pZSgOnuEaVH7gG+0c2Chxg=
+		DfsRxESckG6GdbhrOyNeN0fHsME=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -226,11 +226,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5jqL9aTNRCxXldEBvwYcApqpTK8=
+			fcnmT18fk5zAYVDjWPizniTXeCQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			k/4H71o4ylk/3/5Cm8VS0ZtHxUf4aFgCTcodAq/vqLM=
+			l11ckfamChZpLGnlqRVdZYg0BBplYyQq87H9Tvu31wk=
 			</data>
 		</dict>
 		<key>Headers/EWChargingPileUsageModel.h</key>
