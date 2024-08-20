@@ -39,9 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EWChargingPileChargingLogModel : NSObject
 
-/// 开始充电时间
+//日志时间(秒时间戳)
+@property (nonatomic, assign) NSInteger logTime;
+/// 开始充电时间(秒时间戳)
 @property (nonatomic, assign) NSInteger stratTime;
-/// 结束充电时间
+/// 结束充电时间(秒时间戳)
 @property (nonatomic, assign) NSInteger endTime;
 /// 平均CP占比（百分比）
 @property (nonatomic, assign) CGFloat avgCPPercentage;
@@ -68,6 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EWChargingPileCurrentLogModel : NSObject
 
+//日志时间(秒时间戳)
+@property (nonatomic, assign) NSInteger logTime;
 /// 相对时间
 @property (nonatomic, assign) NSInteger time;
 /// 设置的电流
@@ -81,6 +85,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EWChargingPileTimeLogModel : NSObject
 
+//日志时间(秒时间戳)
+@property (nonatomic, assign) NSInteger logTime;
 /// 总开机时长
 @property (nonatomic, assign) NSInteger totalTime;
 /// 本次开机时长

@@ -8,7 +8,9 @@
 #ifndef EWChargingPileProfiles_h
 #define EWChargingPileProfiles_h
 
-#import <EWBluetoothSDK/EWBluetoothSDK.h>
+#import "EWCentralManager.h"
+#import "EWUtils.h"
+#import "EWDataUtils.h"
 
 @class EWChargingPileInfoModel, EWChargingPileConfigureModel, EWChargingPileStatusModel, EWChargingPileSwitchErrorModel, EWChargingPileCPModel, EWChargingPileUsageModel, EWChargingPileLogModel, EWChargingPileAppointmentModel;
 
@@ -64,6 +66,8 @@ typedef NS_ENUM(NSUInteger, EWCPCommandType) {
     EWCPCommandTypeDeleteLog = 0x19, //删除日志
     EWCPCommandTypeDeviceUsage = 0x1A, //读取设备使用情况
     EWCPCommandTypeConfigureAppointment = 0x1B, //读取/设置预约信息
+    EWCPCommandTypeConfigureSoftHardVersion = 0x1D, //读写软硬件版本
+    EWCPCommandTypeBleUnlocked = 0x1E, //读写蓝牙解锁
     EWCPCommandTypeUpgrade = 0xF0,      // OTA升级
 };
 
@@ -297,6 +301,10 @@ typedef void (^EWChargingPileLogHandler)(NSString * _Nullable chargingPileName, 
 typedef void (^EWChargingPileDeleteLogHandler)(NSString * _Nullable chargingPileName, BOOL res, NSError * _Nullable error);
 // 充电桩预约回调(蓝牙广播号，当前毫秒时间戳，时区，预约信息，错误信息)
 typedef void (^EWChargingPileAppointmentHandler)(NSString * _Nullable chargingPileName, NSTimeInterval currentTime, NSInteger currentTimeZone, NSArray <EWChargingPileAppointmentModel *> * _Nullable appointmentModelArray, NSError * _Nullable error);
+// 充电桩UserID回调(名称，UserID，错误)
+typedef void (^EWChargingPilerUserIDHandler)(NSString * _Nullable chargingPileName, NSString * _Nullable userID, NSError * _Nullable error);
+// 充电桩读写软硬件版本回调(名称，版本编码，错误)
+typedef void (^EWChargingPilerSoftHardVersionHandler)(NSString * _Nullable chargingPileName, NSString * _Nullable version, NSError * _Nullable error);
 // 充电桩成功失败结果回调(名称，成功否，错误)
 typedef void (^EWChargingPilerResultHandler)(NSString * _Nullable chargingPileName, BOOL result, NSError * _Nullable error);
 // 升级回调(名称，进度，当前时间，总时间，错误信息)

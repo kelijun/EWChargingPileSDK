@@ -27,56 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 单例
 + (instancetype)share;
 
-
-/// 配置key和密钥
+///配置连接的充电桩（连接成功后传入连接的设备）
 /// - Parameters:
-///   - appId: appId
-///   - appSecret: appSecret
-- (void)ew_configureChargingPileAppId:(NSString *)appId
-                            appSecret:(NSString *)appSecret;
+///   - chargingPile: 连接的充电桩设备
+///   - handler: 结果回调
+- (void)ew_configureConnectedChargingPile: (EWPeripheral *)chargingPile
+                                  handler:(EWChargingPilerResultHandler)handler ;
 
-///配置搜索配置
-- (void)ew_configChargingPileScanWithName: (NSString *)filterName;
-
-
-/// 扫描附近的充电桩
-/// - Parameter handler: 扫描回调
-- (void)ew_scanChargingPileHandler:(EWScanChargingPileHandler)handler;
-
-/// 附近的充电桩消失，消失后无法连接，请同步删除保存的充电桩
-/// - Parameter handler: 扫描回调
-- (void)ew_chargingPileDisappearHandler:(EWChargingPileDisappearHandler)handler;
-
-/// 停止扫描附近的充电桩
-/// - Parameter handler: 成功回调
-- (void)ew_stopScanChargingPileHandler:(EWStopScanChargingPileHandler)handler;
-
-/// 启动充电桩模块
-/// - Parameters:
-///   - chargingPileName: 充电桩蓝牙广播号
-///   - handler: 启动是否成功回调
-- (void)startChargingPileModule:(NSString *)chargingPileName
-                        handler:(EWChargingPilerResultHandler)handler;
-
-/// 启动充电桩模块(不搜索直接连接)
-/// - Parameters:
-///   - chargingPileName: 充电桩蓝牙广播号
-///   - handler: 启动是否成功回调
-- (void)startChargingPileModuleWithoutScan:(NSString *)chargingPileName
-                                      uuid: (NSString *)uuid
-                                   handler:(EWChargingPilerResultHandler)handler;
-
-/// 关闭充电桩模块
-/// - Parameter chargingPileName: 充电桩蓝牙广播号
-- (void)ew_stopChargingPileModule:(NSString *)chargingPileName;
-
-/// 充电桩断开，包含被动及主动断开
-/// - Parameter handler: 断开回调
-- (void)ew_chargingPileDisconnectedHandler:(EWChargingPilerResultHandler)handler;
-
-/// 通过充电桩蓝牙广播号检查充电桩连接状态，YES连接，NO未连接
-/// - Parameter chargingPileName:充电桩蓝牙广播号
-- (BOOL)checkConnectionStatusOfChargingPile:(NSString *)chargingPileName;
 
 /// 获取产品ID
 /// - Parameters:
@@ -310,10 +267,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// - Parameters:
 ///   - userID: 用户ID
 ///   - chargingPileName: 充电桩蓝牙广播号
+///   - isWrite: 是否写入
 ///   - handler: 配置成功回调
 - (void)ew_configureUserIDWithuserID:(NSString *)userID
                         chargingPile:(NSString *)chargingPileName
-                             handler:(EWChargingPilerResultHandler)handler;
+                             isWrite:(BOOL)isWirte
+                             handler:(EWChargingPilerUserIDHandler)handler;
 
 /// 获取漏电保护开关状态
 /// - Parameters:
@@ -458,7 +417,7 @@ NS_ASSUME_NONNULL_BEGIN
                                            isWrite:(BOOL)isWrite
                                                 account:(nullable NSString *)account
                                                password:(nullable NSString *)password
-                                                   key:(nullable NSString *) key
+                                                   key: (nullable NSString *) key
                                                handler:(EWChargingPileAccountAndPasswordHandler)handler;
 
 /// 配置警告开关
@@ -478,9 +437,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - isWrite: 是否写入
 ///   - maxCurrent: 最大电流
 ///   - handler: 回调
-- (void)ew_configureMaxCurrentWithChargingPile:(NSString *)chargingPileName
-                                       isWrite:(BOOL)isWrite
-                                    maxCurrent:(NSInteger)maxCurrent
+- (void)ew_configureMaxCurrentWithChargingPile: (NSString *)chargingPileName
+                                       isWrite: (BOOL)isWrite
+                                    maxCurrent: (NSInteger)maxCurrent
                                        handler: (EWChargingPileMaxCurrentHandler)handler;
 
 /// 读取设备使用情况
@@ -536,6 +495,25 @@ NS_ASSUME_NONNULL_BEGIN
                                 bookDicArr:(NSArray<NSDictionary *> *)bookDicArr
                                   handler: (EWChargingPileAppointmentHandler)handler;
 
+/// 配置蓝牙解锁
+/// - Parameters:
+///   - chargingPileName: 充电桩名字
+///   - isWrite: 是否写入
+///   - timeZone: 与标准时区的偏差+-24
+///   - currentTime: 当前时间的毫秒时间戳
+///   - bookDicArr: 预约信息字典
+///   - handler: 回调
+- (void)ew_configBleUnlockWithChargingPile:(NSString *)chargingPileName
+                                   isWrite: (BOOL)isWrite
+                                    isOpen: (BOOL)isOpen
+                                   handler:(EWChargingPilerResultHandler) handler;
+
+/// 读写软硬件版本
+- (void)ew_configureSoftHardVersionWithChargingPile: (NSString *)chargingPileName
+                                            isWrite:(BOOL)isWrite
+                                            version:(nullable NSString *)version
+                                            handler: (EWChargingPilerSoftHardVersionHandler)handler;
+
 /// OTA升级
 /// - Parameters:
 ///   - chargingPileName: 充电桩蓝牙广播号
@@ -550,3 +528,4 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
