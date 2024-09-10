@@ -509,10 +509,26 @@ NS_ASSUME_NONNULL_BEGIN
                                    handler:(EWChargingPilerResultHandler) handler;
 
 /// 读写软硬件版本
+/// - Parameters:
+///   - chargingPileName: 充电桩名字
+///   - isWrite: 是否写入
+///   - version: 软硬件版本
+///   - handler: 回调
 - (void)ew_configureSoftHardVersionWithChargingPile: (NSString *)chargingPileName
                                             isWrite:(BOOL)isWrite
                                             version:(nullable NSString *)version
                                             handler: (EWChargingPilerSoftHardVersionHandler)handler;
+
+/// 读写充电桩从机地址
+/// - Parameters:
+///   - chargingPileName: 充电桩名字
+///   - isWrite: 是否写入
+///   - slave: 从机地址
+///   - handler: 回调
+- (void)ew_configSlaveWithChargingPile: (NSString *)chargingPileName
+                               isWrite: (BOOL)isWrite
+                                 slave:(NSInteger)slave
+                               handler:(EWChargingPilerSlaveHandler)handler;
 
 /// OTA升级
 /// - Parameters:

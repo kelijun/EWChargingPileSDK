@@ -66,6 +66,7 @@ typedef NS_ENUM(NSUInteger, EWCPCommandType) {
     EWCPCommandTypeConfigureAppointment = 0x1B, //读取/设置预约信息
     EWCPCommandTypeConfigureSoftHardVersion = 0x1D, //读写软硬件版本
     EWCPCommandTypeBleUnlocked = 0x1E, //读写蓝牙解锁
+    EWCPCommandTypeConfigSlave = 0x1F, //读写从机地址
     EWCPCommandTypeUpgrade = 0xF0,      // OTA升级
 };
 
@@ -303,6 +304,8 @@ typedef void (^EWChargingPileAppointmentHandler)(NSString * _Nullable chargingPi
 typedef void (^EWChargingPilerUserIDHandler)(NSString * _Nullable chargingPileName, NSString * _Nullable userID, NSError * _Nullable error);
 // 充电桩读写软硬件版本回调(名称，版本编码，错误)
 typedef void (^EWChargingPilerSoftHardVersionHandler)(NSString * _Nullable chargingPileName, NSString * _Nullable version, NSError * _Nullable error);
+//充电桩读写从机地址回调（名称、从机地址、错误）
+typedef void (^EWChargingPilerSlaveHandler)(NSString * _Nullable chargingPileName, NSNumber * _Nullable slaveNum, NSError * _Nullable error);
 // 充电桩成功失败结果回调(名称，成功否，错误)
 typedef void (^EWChargingPilerResultHandler)(NSString * _Nullable chargingPileName, BOOL result, NSError * _Nullable error);
 // 升级回调(名称，进度，当前时间，总时间，错误信息)
