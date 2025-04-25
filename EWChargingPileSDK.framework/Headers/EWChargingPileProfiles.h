@@ -186,6 +186,7 @@ typedef NS_ENUM(NSUInteger, EWChargingError) {
     EWChargingError12 = 0x0C,  // 温度传感器3故障
     EWChargingError13 = 0x0D,  // 室内温度过高
     EWChargingError14 = 0x0E,  // 漏电保护器校验错误
+    EWChargingError16 = 0x10,  // 二极管短路
     EWChargingError20 = 0x14,  // 继电器开路
     EWChargingError21 = 0x15,  // 继电器粘连
     EWChargingError22 = 0x16,  // 继电器过温

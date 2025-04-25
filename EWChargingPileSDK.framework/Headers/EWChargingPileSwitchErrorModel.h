@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL highIndoorTempSwitch;
 /// 漏电保护器校验错误
 @property (nonatomic, assign) BOOL leakageCheckErrorSwitch;
+/// 二极管短路
+@property (nonatomic, assign) BOOL diodeShortCircuitSwitch;
 /// 继电器开路
 @property (nonatomic, assign) BOOL relayOpenCircuitSwitch;
 /// 继电器粘连
