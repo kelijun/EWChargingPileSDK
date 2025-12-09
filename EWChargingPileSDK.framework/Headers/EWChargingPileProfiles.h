@@ -62,6 +62,8 @@ typedef NS_ENUM(NSUInteger, EWCPCommandType) {
     EWCPCommandTypeConfigureMaxCurrent = 0x17, //配置最大电流
     EWCPCommandTypeReadLogData = 0x18, //读取日志数据
     EWCPCommandTypeDeleteLog = 0x19, //删除日志
+    EWCPCommandTypeSyncTimeZoneWithMinute = 0x20, //同步时区分钟
+    EWCPCommandTypeConfigureAppointmentWithMinute = 0x21, //读取/设置预约信息 分钟
     EWCPCommandTypeDeviceUsage = 0x1A, //读取设备使用情况
     EWCPCommandTypeConfigureAppointment = 0x1B, //读取/设置预约信息
     EWCPCommandTypeConfigureSoftHardVersion = 0x1D, //读写软硬件版本

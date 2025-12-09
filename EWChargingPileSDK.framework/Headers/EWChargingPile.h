@@ -74,6 +74,14 @@ NS_ASSUME_NONNULL_BEGIN
                           timezone:(NSInteger)timezone
                            handler:(EWChargingPilerResultHandler)handler;
 
+/// 同步设备时区（分钟）
+/// - Parameters:
+///   - chargingPileName: 充电桩蓝牙广播号
+///   - minute: 与标准时区的偏差分钟
+///   - handler: 启动是否成功回调
+- (void)ew_syncChargingPileTimeZoneWithMinute:(NSString *)chargingPileName
+                                       minute:(NSInteger)minute
+                                      handler:(EWChargingPilerResultHandler)handler;
 
 /// 获取充电桩配置
 /// - Parameters:
@@ -129,7 +137,8 @@ NS_ASSUME_NONNULL_BEGIN
                           chargingStopDate:(NSDate *)stopDate
                         chargingPowerArray:(NSArray <NSString *>*)powerArray
                                   isRepeat:(BOOL)isRepeat
-                                   handler:(EWChargingPilerResultHandler)handler;
+                                   handler:(EWChargingPilerResultHandler)handler
+__attribute__((deprecated("请使用 ew_configBookInfoWithChargingPile")));
 
 /// 预约充电 （废弃）
 /// - Parameters:
@@ -144,14 +153,16 @@ NS_ASSUME_NONNULL_BEGIN
                           chargingStopTime:(NSTimeInterval)stopTime
                         chargingPowerArray:(NSArray <NSString *>*)powerArray
                                   isRepeat:(BOOL)isRepeat
-                                   handler:(EWChargingPilerResultHandler)handler;
+                                   handler:(EWChargingPilerResultHandler)handler
+__attribute__((deprecated("请使用 ew_configBookInfoWithChargingPile")));
 
 /// 取消预约充电（废弃）
 /// - Parameters:
 ///   - chargingPileName: 充电桩蓝牙广播号
 ///   - handler: 取消预约充电回调
 - (void)ew_chargingPileCancelAppointmentCharging:(NSString *)chargingPileName
-                                         handler:(EWChargingPilerResultHandler)handler;
+                                         handler:(EWChargingPilerResultHandler)handler
+__attribute__((deprecated("请使用 ew_configBookInfoWithChargingPile")));
 
 /// 时长充电
 /// - Parameters:
@@ -476,6 +487,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ew_configBookInfoWithChargingPile: (NSString *)chargingPileName
                                   isWrite: (BOOL)isWrite
                                  timezone:(NSInteger)timezone
+                              currentTime:(NSTimeInterval)currentTime
+                                bookArray:(NSArray <EWChargingPileAppointmentModel *>*)bookArray
+                                  handler: (EWChargingPileAppointmentHandler)handler;
+
+/// 配置预约充电（传入字典）版本大于53
+/// - Parameters:
+///   - chargingPileName: 充电桩名字
+///   - isWrite: 是否写入
+///   - minute: 与标准时区的偏差的分钟
+///   - currentTime: 当前时间的毫秒时间戳
+///   - bookArray: 预约信息
+///   - handler: 回调
+- (void)ew_configBookInfoWithChargingPile: (NSString *)chargingPileName
+                                  isWrite: (BOOL)isWrite
+                                   minute:(NSInteger)minute
                               currentTime:(NSTimeInterval)currentTime
                                 bookArray:(NSArray <EWChargingPileAppointmentModel *>*)bookArray
                                   handler: (EWChargingPileAppointmentHandler)handler;
