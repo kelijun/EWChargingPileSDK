@@ -70,18 +70,18 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - chargingPileName: 充电桩蓝牙广播号
 ///   - timeZone: 与标准时区的偏差+-24
 ///   - handler: 启动是否成功回调
-- (void)ew_syncChargingPileTimezone:(NSString *)chargingPileName
-                          timezone:(NSInteger)timezone
-                           handler:(EWChargingPilerResultHandler)handler;
+- (void)ew_syncChargingPile:(NSString *)chargingPileName
+             timeZoneOffset:(NSInteger)timeZone
+                    handler:(EWChargingPilerResultHandler)handler;
 
 /// 同步设备时区（分钟）
 /// - Parameters:
 ///   - chargingPileName: 充电桩蓝牙广播号
-///   - minute: 与标准时区的偏差分钟
+///   - minutes: 与标准时区的偏差分钟
 ///   - handler: 启动是否成功回调
-- (void)ew_syncChargingPileTimeZoneWithMinute:(NSString *)chargingPileName
-                                       minute:(NSInteger)minute
-                                      handler:(EWChargingPilerResultHandler)handler;
+- (void)ew_syncChargingPile:(NSString *)chargingPileName
+    timeZoneOffsetInMinutes:(NSInteger)minutes
+                    handler:(EWChargingPilerResultHandler)handler;
 
 /// 获取充电桩配置
 /// - Parameters:
@@ -491,7 +491,22 @@ __attribute__((deprecated("请使用 ew_configBookInfoWithChargingPile")));
                                 bookArray:(NSArray <EWChargingPileAppointmentModel *>*)bookArray
                                   handler: (EWChargingPileAppointmentHandler)handler;
 
-/// 配置预约充电（传入字典）版本大于53
+/// 配置预约充电（传入字典）
+/// - Parameters:
+///   - chargingPileName: 充电桩名字
+///   - isWrite: 是否写入
+///   - timeZone: 与标准时区的偏差+-24
+///   - currentTime: 当前时间的毫秒时间戳
+///   - bookDicArr: 预约信息字典
+///   - handler: 回调
+- (void)ew_configBookInfoWithChargingPile: (NSString *)chargingPileName
+                                  isWrite: (BOOL)isWrite
+                                 timezone:(NSInteger)timezone
+                              currentTime:(NSTimeInterval)currentTime
+                                bookDicArr:(NSArray<NSDictionary *> *)bookDicArr
+                                  handler: (EWChargingPileAppointmentHandler)handler;
+
+/// 配置预约充电版本大于53
 /// - Parameters:
 ///   - chargingPileName: 充电桩名字
 ///   - isWrite: 是否写入
@@ -506,17 +521,17 @@ __attribute__((deprecated("请使用 ew_configBookInfoWithChargingPile")));
                                 bookArray:(NSArray <EWChargingPileAppointmentModel *>*)bookArray
                                   handler: (EWChargingPileAppointmentHandler)handler;
 
-/// 配置预约充电（传入字典）
+/// 配置预约充电（传入字典）版本大于53
 /// - Parameters:
 ///   - chargingPileName: 充电桩名字
 ///   - isWrite: 是否写入
-///   - timeZone: 与标准时区的偏差+-24
+///   - minute: 与标准时区的偏差的分钟
 ///   - currentTime: 当前时间的毫秒时间戳
 ///   - bookDicArr: 预约信息字典
 ///   - handler: 回调
 - (void)ew_configBookInfoWithChargingPile: (NSString *)chargingPileName
                                   isWrite: (BOOL)isWrite
-                                 timezone:(NSInteger)timezone
+                                   minute:(NSInteger)minute
                               currentTime:(NSTimeInterval)currentTime
                                 bookDicArr:(NSArray<NSDictionary *> *)bookDicArr
                                   handler: (EWChargingPileAppointmentHandler)handler;
